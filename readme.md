@@ -23,9 +23,10 @@ pip install -r requirements.txt
 3) В ответ вам вернется статистика по ссылке, короткая ссылка или сообщение об ошибке.
 
 ## Примеры кода:
+### Создание ссылки:
 
 ```
-### Создание ссылки:
+
 
 $python3 main.py https://docs.python.org/3.6/howto/argparse.html
 

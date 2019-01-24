@@ -1,9 +1,10 @@
 import requests
 import os
 import argparse
-
 from dotenv import load_dotenv, find_dotenv
+
 load_dotenv(find_dotenv())
+
 
 shorten_url = "https://api-ssl.bitly.com/v4/shorten"
 headers =  {'Authorization': f'Bearer {os.getenv("TOKEN")}'}
@@ -24,7 +25,7 @@ def get_bitly_response(user_input):
   return bitly_response
 
 def check_user_input_result(bitly_response):
-  if bitly_response.ok == False:
+  if not bitly_response.ok:
     data = {"long_url": user_input}
     bitly_info = requests.post(shorten_url, headers=headers, json=data)
     if bitly_info.status_code == 400:

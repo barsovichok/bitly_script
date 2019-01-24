@@ -23,10 +23,9 @@ pip install -r requirements.txt
 3) В ответ вам вернется статистика по ссылке, короткая ссылка или сообщение об ошибке.
 
 ## Примеры кода:
+### Создание bitly-ссылки:
 
 ```
-### Создание ссылки:
-
 $python3 main.py https://docs.python.org/3.6/howto/argparse.html
 
 Ответ скрипта:
@@ -34,8 +33,9 @@ $python3 main.py https://docs.python.org/3.6/howto/argparse.html
 
 ```
 
+### Статистика по cуществующей ссылке:
+
 ```
-### Статистика по ссылке:
 ВАЖНО: передавать именно bit.ly/2RS1hw1, без https:// впереди, так как мы передаём не ссылку, а id ссылки в сервисе bit.ly
 
 $python3 main.py bit.ly/2RS1hw1
@@ -44,9 +44,9 @@ $python3 main.py bit.ly/2RS1hw1
 {"unit_reference":"2019-01-16T15:16:39+0000","total_clicks":0,"units":-1,"unit":"day"}
 
 ```
-```
 ### Обработка ошибки:
 
+```
 $python3 main.py fdfdfd
 
 Ответ скрипта:
@@ -54,4 +54,4 @@ You add the wrong link, please restart the script
 
 ```
 
-Если у вас возникнут вопросы, можете писать в Телеграм @TanyaKulagina.
+Если у вас возникнут вопросы, можете писать в Телеграм https://t.me/TanyaKulagina.

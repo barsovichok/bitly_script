@@ -1,16 +1,14 @@
 import requests
 import os
 import argparse
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
+from settings import token
 
 
-shorten_url = "https://api-ssl.bitly.com/v4/shorten"
-headers =  {'Authorization': f'Bearer {os.getenv("TOKEN")}'}
+SHORTEN_URL = "https://api-ssl.bitly.com/v4/shorten"
+HEADERS =  {'Authorization': f'Bearer {token}'}
 
 
-def user_input():
+def parse_user_input():
   parser = argparse.ArgumentParser(description=
     "Hi! Add link to short or bitlink to get the stats data"
   )
@@ -21,13 +19,13 @@ def user_input():
 
 def get_bitly_response(user_input):
   click_summary_link = f"https://api-ssl.bitly.com/v4/bitlinks/{user_input}/clicks/summary"
-  bitly_response = requests.get(click_summary_link, headers=headers)
+  bitly_response = requests.get(click_summary_link, headers=HEADERS)
   return bitly_response
 
 def check_user_input_result(bitly_response):
   if not bitly_response.ok:
     data = {"long_url": user_input}
-    bitly_info = requests.post(shorten_url, headers=headers, json=data)
+    bitly_info = requests.post(SHORTEN_URL, headers=HEADERS, json=data)
     if bitly_info.status_code == 400:
       return None
     else:
@@ -42,9 +40,8 @@ def print_result(check_user_input_result):
     print(check_user_input_result)
 
 if __name__ == '__main__':
-  
-  user_input = user_input()
-  bitly_response = get_bitly_response(user_input)
+  parse_user_input = parse_user_input()
+  bitly_response = get_bitly_response(parse_user_input)
   check_user_input_result = check_user_input_result(bitly_response)
   print_result(check_user_input_result)
   
